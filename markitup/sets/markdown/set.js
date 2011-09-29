@@ -34,14 +34,15 @@ markdownSettings = {
     
     onEnter: {
       openWith: function(markItUp, char) {
-        var $textarea = $(markItUp.textarea),
-            line_breaks = miu.count_line_breaks($textarea.val()),
-            hex = miu.count_line_breaks($textarea.val(), true),
-            
-            current_line = miu.get_current_line($textarea.val(), markItUp.caretPosition, hex);
-        
-        // console.log(current_line);
-        console.trace();
+        // var $textarea = $(markItUp.textarea),
+        //     line_breaks = miu.count_line_breaks($textarea.val()),
+        //     hex = miu.count_line_breaks($textarea.val(), true),
+        //     
+        //     current_line = miu.get_current_line($textarea.val(), markItUp.caretPosition, hex);
+        // 
+        // // console.log(current_line);
+        // console.trace();
+        console.log(markItUp.line);
       }
     }
 }

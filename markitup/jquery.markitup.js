@@ -293,6 +293,8 @@
 									altKey:altKey
 								}
 							);
+							
+        $.extend(hash, { line: get_current_line() });
 				
 				// callbacks before insertion
 				prepare(options.beforeInsert);
