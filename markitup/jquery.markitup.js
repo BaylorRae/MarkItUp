@@ -290,11 +290,15 @@
 									caretPosition:caretPosition,
 									ctrlKey:ctrlKey, 
 									shiftKey:shiftKey, 
-									altKey:altKey
+									altKey:altKey,
+									lineContent: ''
 								}
 							);
 							
-        $.extend(hash, { line: get_current_line() });
+        $.extend(hash, {
+          line: get_current_line(),
+          lineContent: get_line_content()
+        });
 				
 				// callbacks before insertion
 				prepare(options.beforeInsert);
@@ -607,6 +611,17 @@
 
         // Never return 0, because documents start at line #1
         return ++num;
+      }
+      
+      function get_line_content() {
+        var text = $(hash.textarea).val(),
+            output = '';
+        
+        if( text) {
+          output = text.split(/\r?\n/g)[(get_current_line() - 1)]
+        }
+        
+        return output;
       }
 
 			init();

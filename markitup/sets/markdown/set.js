@@ -42,7 +42,7 @@ markdownSettings = {
         // 
         // // console.log(current_line);
         // console.trace();
-        console.log(markItUp.line);
+        console.log(markItUp.line, markItUp.lineContent);
       }
     }
 }
