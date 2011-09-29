@@ -9,11 +9,11 @@
 <!-- markItUp! -->
 <script type="text/javascript" src="markitup/jquery.markitup.js"></script>
 <!-- markItUp! toolbar settings -->
-<script type="text/javascript" src="markitup/sets/default/set.js"></script>
+<script type="text/javascript" src="markitup/sets/markdown/set.js"></script>
 <!-- markItUp! skin -->
 <link rel="stylesheet" type="text/css" href="markitup/skins/markitup/style.css" />
 <!--  markItUp! toolbar skin -->
-<link rel="stylesheet" type="text/css" href="markitup/sets/default/style.css" />
+<link rel="stylesheet" type="text/css" href="markitup/sets/markdown/style.css" />
 </head>
 <body>
 <script type="text/javascript">
@@ -21,7 +21,7 @@
 $(document).ready(function()	{
 	// Add markItUp! to your textarea in one line
 	// $('textarea').markItUp( { Settings }, { OptionalExtraSettings } );
-	$('#markItUp').markItUp(mySettings);
+	$('#markItUp').markItUp(markdownSettings);
 	
 	// You can add content from anywhere in your page
 	// $.markItUp( { Settings } );	

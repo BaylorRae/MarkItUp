@@ -283,7 +283,7 @@
 				var len, j, n, i;
 				hash = clicked = button;
 				get();
-				$.extend(hash, {	line:"", 
+				$.extend(hash, {	line:get_current_line(), 
 						 			root:options.root,
 									textarea:textarea, 
 									selection:(selection||''), 
@@ -293,13 +293,13 @@
 									altKey:altKey
 								}
 							);
+				
 				// callbacks before insertion
 				prepare(options.beforeInsert);
 				prepare(clicked.beforeInsert);
 				if ((ctrlKey === true && shiftKey === true) || button.multiline === true) {
 					prepare(clicked.beforeMultiInsert);
 				}			
-				$.extend(hash, { line:1 });
 
 				if ((ctrlKey === true && shiftKey === true)) {
 					lines = selection.split(/\r?\n/);
@@ -342,7 +342,7 @@
 					caretOffset -= fixOperaBug($$.val().substring(0, caretPosition));
 				}
 				$.extend(hash, { caretPosition:caretPosition, scrollPosition:scrollPosition } );
-
+        
 				if (string.block !== selection && abort === false) {
 					insert(string.block);
 					set(start, len);
@@ -570,6 +570,42 @@
 					}
 				}
 			}
+			
+			/**
+			 * Gets hex from the textarea's value
+			 *
+			 * @author Alex Brem
+			 * @link https://github.com/localhost/jquery-fieldselection
+			 */
+      function get_hex() {
+        var hex = '', tmp,
+            text = $(hash.textarea).val();
+
+        if( text ) {
+          for( var i = 0, len = text.length; i < len; i++ ) {
+            tmp = text.charCodeAt(i).toString(16);
+            hex += (tmp.length == 2) ? tmp : '0' + tmp;
+          }
+        }
+
+        return hex;
+      }
+      
+      function get_current_line(argument) {
+        // regex matches all hex code characters
+        // up to the caretPosition
+        var regex = new RegExp('[\\w+]{' + (hash.caretPosition * 2) + '}');
+            matches = get_hex().match(regex),
+            num = 0;
+
+        // Make sure we have some line breaks
+        if( /0a/g.test(matches) ) {
+          num = matches[0].match(/0a/g).length;
+        }
+
+        // Never return 0, because documents start at line #1
+        return ++num;
+      }
 
 			init();
 		});
